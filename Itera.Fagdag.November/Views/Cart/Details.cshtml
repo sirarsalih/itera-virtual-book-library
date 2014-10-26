@@ -1,0 +1,30 @@
+﻿@model Itera.Fagdag.November.ViewModels.CartViewModel
+
+<div class="row">
+    <div class="hero-unit">
+        <h2>My Cart</h2>
+    </div>
+    @foreach (var book in @Model.CartBooks) {
+        <div class="span2">
+            <img class="thumbnail" src="@Url.Content(book.CoverImageUrl)"></img>
+        </div>
+        <div class="span10">
+            <h2>@book.Title</h2>
+            <h3>@book.Author</h3>
+            <p>@book.Description</p>
+            <p><b>Language:</b> @book.Language</p>
+            <p><b>Pages:</b> @book.Pages</p>
+            <p><b>ISBN-10:</b> @book.ISBN10 <b>ISBN-13:</b> @book.ISBN13</p>
+            <p>
+                @Html.ActionLink("Unreserve", "UnreserveAndUpdateCart", "Cart", new
+                {
+                    id = book.Id
+                }, new
+                {
+                    @class = "btn"
+                })
+            </p>
+        </div>
+    }
+    @Model.CartText
+</div>
